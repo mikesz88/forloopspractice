@@ -3,9 +3,27 @@
 // Array example: bankAccounts in /data/data.js
 // getAllWithdrawals(bankAccounts) => [3432, 43242.34, 23432]
 
+const getSums = (withdrawals) => {
+  let sum = 0;
+  for (let index = 0; index < withdrawals.length; index++) {
+    const number = withdrawals[index];
+    sum += number;
+  }
+  return sum;
+};
+
 export function getAllWithdrawals(array) {
   // Your code goes here...
-
+  const clients = [];
+  for (let index = 0; index < array.length; index++) {
+    const bankAccount = array[index];
+    if (!bankAccount.withdrawals) {
+      bankAccount.withdrawals = [];
+    }
+    const sum = getSums(bankAccount.withdrawals);
+    clients.push(sum);
+  }
+  return clients;
 }
 
 // === TEST YOURSELF ===
